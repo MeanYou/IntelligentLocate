@@ -1,0 +1,148 @@
+@min-width: 1300px;
+@min-height: 600px;
+@nav-height: 48px;
+@condition-height: 60px;
+@result-width: 453px;
+@result-padding: 20px;
+@result-title-height: 30px;
+@middle-width: 20px;
+
+body {
+	min-width: @min-width;
+	min-height: @min-height;
+}
+
+#app {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	min-width: @min-width;
+	min-height: @min-height;
+	>div {
+		min-width: @min-width;
+		min-height: @min-height;
+	}
+}
+
+.navbar {
+	z-index: 10;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: @nav-height;
+	.nav-title {
+		float: left;
+		margin-left: 10px;
+		height: @nav-height;
+		line-height: @nav-height;
+		font-size: 22px;
+		color: #333333;
+		img, span {
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+	}
+	.nav-menu {
+		float: right;
+	}
+}
+
+.route-container {
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-width: @min-width;
+	min-height: @min-height;
+}
+
+.condition-panel {
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top: @nav-height;
+	height: @condition-height;
+	line-height: @condition-height;
+	padding-left: 10px;
+	.condition-label {
+		margin-left: 20px;
+	}
+	button {
+		margin-left: 20px;
+	}
+	.ant-select-selection__choice {
+		max-width: 88px;
+	}
+}
+
+.result-panel {
+	z-index: 1;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: @result-width;
+	height: calc(~'100% - '(@nav-height + @condition-height));
+	padding: 0 @result-padding;
+	overflow: auto;
+
+	.result-title {
+		width: 100%;
+		height: @result-title-height;
+		border: 1px solid black;
+	}
+}
+
+.map-container {
+	z-index: 10;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: calc(~'100% - '(@result-width + @middle-width));
+	height: calc(~'100% - '(@nav-height + @condition-height));
+}
+
+.map-full-width {
+	width: calc(~'100% - '@middle-width);
+}
+
+.map-full-height {
+	height: calc(~'100% - '@nav-height);
+}
+
+#mapbox {
+	width: 100%;
+	height: 100%;
+}
+
+.display-controller {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	.display-controller-condition {
+		z-index: 2;
+		position: absolute;
+		top: @nav-height + 20px;
+		right: 0;
+		cursor: pointer;
+	}
+	.display-controller-result {
+		z-index: 2;
+		position: absolute;
+		bottom: calc(~'(100% - '(@nav-height + @condition-height)~') / 2');
+		right: @result-width;
+		cursor: pointer;
+	}
+	.full-height {
+		bottom: calc(~'(100% - '@nav-height~') / 2');
+	}
+	.full-width {
+		right: 0;
+	}
+}
